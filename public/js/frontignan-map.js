@@ -359,8 +359,17 @@
       state.popupAdresse = event.target.value;
     });
 
-    L.DomEvent.on(button, 'click', () => {
+    // L.DomEvent.on(button, 'click', () => {
+    //   addLieuFromPopup();
+
+    L.DomEvent.on(button, 'click', (e) => {
+      L.DomEvent.stop(e); // empêche bug mobile
+
       addLieuFromPopup();
+
+      if (state.leafletMap) {
+        state.leafletMap.closePopup(); // 🔥 débloque la carte
+      }
     });
 
     return container;
