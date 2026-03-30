@@ -512,44 +512,113 @@ textarea {
   }
 }
 
-/* 🔹 Texte plus lisible sur mobile */
+/* ============================
+   📱 Styles Mobile Optimisés
+============================ */
 @media (max-width: 768px) {
+  /* Corps et texte général */
   body, input, select, textarea, button, label, p {
     font-size: 16px !important;
-    line-height: 1.5;
+    line-height: 1.5 !important;
   }
 
   h1 {
     font-size: 2.4rem !important;
   }
 
-  h2, h3 {
-    font-size: 1.5rem !important;
+  h2 {
+    font-size: 1.6rem !important;
   }
 
-  .map-popup, 
-  .popup-label, 
-  .popup-type, 
-  .popup-coordinates {
+  h3 {
+    font-size: 1.4rem !important;
+  }
+
+  /* Cartes et popups */
+  .leaflet-map {
+    height: 400px !important;
+  }
+
+  .map-popup {
+    font-size: 16px !important;
+    gap: 10px !important;
+    min-width: 300px !important;
+    max-width: 100% !important;
+  }
+
+  .popup-label, .popup-type, .popup-coordinates {
     font-size: 16px !important;
   }
 
   .map-popup input,
-  .map-popup textarea,
-  input,
-  select,
-  textarea,
-  button {
+  .map-popup textarea {
     font-size: 16px !important;
-    padding: 10px 12px !important;
+    padding: 10px !important;
   }
 
+  .map-popup button {
+    font-size: 16px !important;
+    padding: 12px 16px !important;
+  }
+
+  /* Formulaires */
+  .chat-form, .selected-form, .form-section {
+    padding: 20px !important;
+  }
+
+  .form-grid, .selected-grid, .checkbox-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .checkbox-grid label {
+    font-size: 16px !important;
+  }
+
+  input, select, textarea {
+    font-size: 16px !important;
+    padding: 10px !important;
+  }
+
+  /* Type cards */
   .type-card {
     font-size: 1rem !important;
+    padding: 16px !important;
   }
 
+  .type-selector {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Boutons */
   .btn-primary, .btn-secondary, .supprimer {
     font-size: 16px !important;
     padding: 12px 16px !important;
+  }
+
+  /* Grilles et flex */
+  .form-header,
+  .header-actions,
+  .actions,
+  .liste-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  /* Toaster notification */
+  .toast-notification {
+    width: min(95%, 360px) !important;
+    font-size: 16px !important;
+  }
+
+  /* Marges et paddings */
+  .map-card {
+    padding: 20px !important;
+  }
+
+  .infos p {
+    font-size: 16px !important;
   }
 }
