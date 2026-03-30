@@ -307,6 +307,8 @@
 
   function createPopupContent(latitude, longitude) {
     const container = L.DomUtil.create('div', 'map-popup');
+    container.style.touchAction = 'auto'; // important pour mobile
+
     const title = L.DomUtil.create('strong', '', container);
     title.textContent = 'Nouveau point';
 
@@ -319,25 +321,25 @@
     const primaryLabel = L.DomUtil.create('label', 'popup-label', container);
 
     if (state.typeMarqueurActif === 'chat') {
-      primaryLabel.textContent = 'Numero de dossier';
-      const dossierInput = L.DomUtil.create('input', '', container);
-      dossierInput.type = 'text';
-      dossierInput.placeholder = 'Numero de dossier';
-      dossierInput.value = state.popupDossierNumero;
+        primaryLabel.textContent = 'Numero de dossier';
+        const dossierInput = L.DomUtil.create('input', '', container);
+        dossierInput.type = 'text';
+        dossierInput.placeholder = 'Numero de dossier';
+        dossierInput.value = state.popupDossierNumero;
 
-      L.DomEvent.on(dossierInput, 'input', (event) => {
-        state.popupDossierNumero = event.target.value;
-      });
+        L.DomEvent.on(dossierInput, 'input', (event) => {
+            state.popupDossierNumero = event.target.value;
+        });
     } else {
-      primaryLabel.textContent = 'Nom de la maison';
-      const nomInput = L.DomUtil.create('input', '', container);
-      nomInput.type = 'text';
-      nomInput.placeholder = 'Nom de la maison';
-      nomInput.value = state.popupNom;
+        primaryLabel.textContent = 'Nom de la maison';
+        const nomInput = L.DomUtil.create('input', '', container);
+        nomInput.type = 'text';
+        nomInput.placeholder = 'Nom de la maison';
+        nomInput.value = state.popupNom;
 
-      L.DomEvent.on(nomInput, 'input', (event) => {
-        state.popupNom = event.target.value;
-      });
+        L.DomEvent.on(nomInput, 'input', (event) => {
+            state.popupNom = event.target.value;
+        });
     }
 
     const adresseLabel = L.DomUtil.create('label', 'popup-label', container);
@@ -348,28 +350,26 @@
     adresseInput.placeholder = 'Adresse';
     adresseInput.value = state.popupAdresse;
 
+    L.DomEvent.on(adresseInput, 'input', (event) => {
+        state.popupAdresse = event.target.value;
+    });
+
     const button = L.DomUtil.create('button', '', container);
     button.type = 'button';
     button.textContent = 'Ajouter ce point';
 
+    // ✅ corrige le blocage mobile
     L.DomEvent.disableClickPropagation(container);
     L.DomEvent.disableScrollPropagation(container);
 
-    L.DomEvent.on(adresseInput, 'input', (event) => {
-      state.popupAdresse = event.target.value;
-    });
-
-    // L.DomEvent.on(button, 'click', () => {
-    //   addLieuFromPopup();
-
     L.DomEvent.on(button, 'click', (e) => {
-      L.DomEvent.stop(e); // empêche bug mobile
+        L.DomEvent.stop(e); // stop propagation mobile
+        addLieuFromPopup();
 
-      addLieuFromPopup();
-
-      if (state.leafletMap) {
-        state.leafletMap.closePopup(); // 🔥 débloque la carte
-      }
+        // 🔥 ferme le popup et libère la carte
+        if (state.leafletMap) {
+            state.leafletMap.closePopup();
+        }
     });
 
     return container;
