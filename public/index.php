@@ -1,4 +1,5 @@
 <?php
+die('INDEX OK');
 
 use App\Kernel;
 
