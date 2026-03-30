@@ -512,10 +512,11 @@ textarea {
   }
 }
 
-/* ============================
-   📱 Styles Mobile Optimisés
-============================ */
+/* ===============================
+   📱 Mobile Friendly – Complet
+=============================== */
 @media (max-width: 768px) {
+
   /* Corps et texte général */
   body, input, select, textarea, button, label, p {
     font-size: 16px !important;
@@ -534,16 +535,18 @@ textarea {
     font-size: 1.4rem !important;
   }
 
-  /* Cartes et popups */
+  /* Carte Leaflet */
   .leaflet-map {
     height: 400px !important;
   }
 
+  /* Popups Leaflet */
   .map-popup {
     font-size: 16px !important;
     gap: 10px !important;
-    min-width: 300px !important;
-    max-width: 100% !important;
+    min-width: 280px !important;
+    max-width: 95% !important;
+    overflow-y: auto !important;
   }
 
   .popup-label, .popup-type, .popup-coordinates {
@@ -559,11 +562,13 @@ textarea {
   .map-popup button {
     font-size: 16px !important;
     padding: 12px 16px !important;
+    width: 100%;
   }
 
   /* Formulaires */
   .chat-form, .selected-form, .form-section {
     padding: 20px !important;
+    width: 100% !important;
   }
 
   .form-grid, .selected-grid, .checkbox-grid {
@@ -595,6 +600,7 @@ textarea {
   .btn-primary, .btn-secondary, .supprimer {
     font-size: 16px !important;
     padding: 12px 16px !important;
+    width: 100% !important;
   }
 
   /* Grilles et flex */
@@ -620,5 +626,26 @@ textarea {
 
   .infos p {
     font-size: 16px !important;
+  }
+
+  /* Popups scrollables si contenu trop long */
+  .map-popup {
+    max-height: 70vh !important;
+  }
+
+  /* Champs textarea plus grands */
+  textarea {
+    min-height: 100px !important;
+  }
+
+  /* Ajuste l’espacement dans les popups et formulaires */
+  .form-section, .chat-form, .selected-form {
+    gap: 12px !important;
+  }
+
+  /* Active marker icon plus visible */
+  .cat-marker.is-selected .cat-pin,
+  .house-marker.is-selected .house-pin {
+    transform: rotate(-45deg) scale(1.2) !important;
   }
 }
