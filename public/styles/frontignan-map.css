@@ -513,139 +513,180 @@ textarea {
 }
 
 /* ===============================
-   📱 Mobile Friendly – Complet
+   🌐 Site Responsive Global
+   Texte, boutons, cartes et popups
+   s’adaptent à toutes tailles d’écran
+=============================== */
+
+/* ===============================
+   Variables couleurs et texte
+=============================== */
+:root {
+  color-scheme: light;
+  --background-main: #f4efe7;
+  --background-card: rgba(255, 255, 255, 0.95);
+  --surface-soft: #f7fbf9;
+  --surface-strong: #ffffff;
+  --border-soft: #d7e7e1;
+  --text-main: #173530;
+  --text-soft: #335c56;
+  --accent-main: #157a6e;
+  --accent-alt: #b85c38;
+  --danger-bg: #fee4e2;
+  --danger-text: #b42318;
+}
+
+/* ===============================
+   Base styles
+=============================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(21, 122, 110, 0.12), transparent 30%),
+    linear-gradient(135deg, #f7f2ea, #e8f3ef);
+  color: var(--text-main);
+  font-family: "Lato", sans-serif;
+  font-size: clamp(16px, 1.5vw, 18px);
+  line-height: 1.6;
+}
+
+/* ===============================
+   Titres
+=============================== */
+h1 {
+  font-family: "Raleway", sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h3 {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+}
+
+/* ===============================
+   Paragraphes et textes généraux
+=============================== */
+p, label, input, select, textarea, button {
+  font-size: clamp(16px, 2.5vw, 20px);
+}
+
+/* ===============================
+   Cartes et sections
+=============================== */
+.map-card {
+  width: min(100%, 1120px);
+  margin: 0 16px;
+  background: var(--background-card);
+  border: 6px solid white;
+  border-radius: 28px;
+  padding: clamp(20px, 3vw, 32px);
+  display: grid;
+  grid-template-columns: 1fr;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
+}
+
+/* ===============================
+   Formulaires et inputs
+=============================== */
+input, select, textarea {
+  width: 100%;
+  padding: clamp(10px, 2vw, 14px);
+  border: 1px solid #b8d2ca;
+  border-radius: 12px;
+  font-size: clamp(16px, 2.5vw, 20px);
+}
+
+textarea {
+  resize: vertical;
+  min-height: clamp(80px, 15vw, 120px);
+}
+
+/* ===============================
+   Boutons
+=============================== */
+.btn-primary, .btn-secondary, .supprimer, .map-popup button {
+  font-size: clamp(16px, 2.5vw, 20px);
+  padding: clamp(10px, 2vw, 14px) clamp(14px, 3vw, 18px);
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+}
+
+/* Couleurs boutons */
+.btn-primary { background: var(--accent-main); color: white; }
+.btn-secondary { background: #e6f3ef; color: #11453f; }
+.supprimer { background: var(--danger-bg); color: var(--danger-text); }
+
+/* ===============================
+   Carte Leaflet
+=============================== */
+.leaflet-map {
+  width: 100%;
+  height: clamp(350px, 50vw, 540px);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid var(--border-soft);
+}
+
+/* Popups Leaflet */
+.map-popup {
+  font-size: clamp(16px, 2.5vw, 20px);
+  gap: 10px;
+  min-width: 280px;
+  max-width: 95%;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.map-popup input, .map-popup textarea {
+  font-size: clamp(16px, 2.5vw, 20px);
+  padding: clamp(8px, 1.5vw, 12px);
+}
+
+/* ===============================
+   Grilles et flex
+=============================== */
+.form-grid, .selected-grid, .checkbox-grid {
+  display: grid;
+  gap: clamp(12px, 2vw, 20px);
+}
+
+.checkbox-grid {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+/* ===============================
+   Toaster notifications
+=============================== */
+.toast-notification {
+  font-size: clamp(16px, 2.5vw, 20px);
+  padding: clamp(12px, 2vw, 18px);
+  border-radius: 16px;
+  bottom: 20px;
+  max-width: 95%;
+}
+
+/* ===============================
+   Responsive mobile first
 =============================== */
 @media (max-width: 768px) {
-
-  /* Corps et texte général */
-  body, input, select, textarea, button, label, p {
-    font-size: 16px !important;
-    line-height: 1.5 !important;
-  }
-
-  h1 {
-    font-size: 2.4rem !important;
-  }
-
-  h2 {
-    font-size: 1.6rem !important;
-  }
-
-  h3 {
-    font-size: 1.4rem !important;
-  }
-
-  /* Carte Leaflet */
-  .leaflet-map {
-    height: 400px !important;
-  }
-
-  /* Popups Leaflet */
-  .map-popup {
-    font-size: 16px !important;
-    gap: 10px !important;
-    min-width: 280px !important;
-    max-width: 95% !important;
-    overflow-y: auto !important;
-  }
-
-  .popup-label, .popup-type, .popup-coordinates {
-    font-size: 16px !important;
-  }
-
-  .map-popup input,
-  .map-popup textarea {
-    font-size: 16px !important;
-    padding: 10px !important;
-  }
-
-  .map-popup button {
-    font-size: 16px !important;
-    padding: 12px 16px !important;
-    width: 100%;
-  }
-
-  /* Formulaires */
-  .chat-form, .selected-form, .form-section {
-    padding: 20px !important;
-    width: 100% !important;
-  }
-
-  .form-grid, .selected-grid, .checkbox-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-  }
-
-  .checkbox-grid label {
-    font-size: 16px !important;
-  }
-
-  input, select, textarea {
-    font-size: 16px !important;
-    padding: 10px !important;
-  }
-
-  /* Type cards */
-  .type-card {
-    font-size: 1rem !important;
-    padding: 16px !important;
-  }
-
-  .type-selector {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-  }
-
-  /* Boutons */
-  .btn-primary, .btn-secondary, .supprimer {
-    font-size: 16px !important;
-    padding: 12px 16px !important;
-    width: 100% !important;
-  }
-
-  /* Grilles et flex */
-  .form-header,
-  .header-actions,
-  .actions,
-  .liste-header {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 12px !important;
-  }
-
-  /* Toaster notification */
-  .toast-notification {
-    width: min(95%, 360px) !important;
-    font-size: 16px !important;
-  }
-
-  /* Marges et paddings */
-  .map-card {
-    padding: 20px !important;
-  }
-
-  .infos p {
-    font-size: 16px !important;
-  }
-
-  /* Popups scrollables si contenu trop long */
-  .map-popup {
-    max-height: 70vh !important;
-  }
-
-  /* Champs textarea plus grands */
-  textarea {
-    min-height: 100px !important;
-  }
-
-  /* Ajuste l’espacement dans les popups et formulaires */
-  .form-section, .chat-form, .selected-form {
-    gap: 12px !important;
-  }
-
-  /* Active marker icon plus visible */
-  .cat-marker.is-selected .cat-pin,
-  .house-marker.is-selected .house-pin {
-    transform: rotate(-45deg) scale(1.2) !important;
+  .map-card { padding: clamp(16px, 4vw, 24px); }
+  .form-grid, .selected-grid, .checkbox-grid { grid-template-columns: 1fr; }
+  .form-header, .header-actions, .actions, .liste-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
   }
 }
